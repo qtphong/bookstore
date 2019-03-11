@@ -4,7 +4,7 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-    <class name = "com.bookstore.model.Book" table = "BOOKS">
+    <class name = "com.bookstore.model.Author" table = "AUTHORS">
 
         <meta attribute = "class-description">
             This class contains the employee detail.
@@ -12,11 +12,16 @@
 
         <id name = "id" type = "int" column = "id">
             <generator class="native"/>
+            
         </id>
+        
+        <set name="Books" cascade="all" >
+            <key column="authors_id"></key>
+            <one-to-many class="com.bookstore.model.Book"/>
+        </set>
 
-        <property name = "title" column = "title" type = "string"/>
-        <property name = "description" column = "description" type = "string"/>
-        <many-to-one name="author" column="authors_id"  class="com.bookstore.model.Author"/>
+       
+        <property name = "name" column = "name" type = "string"/>
 
     </class>
 </hibernate-mapping>

@@ -4,6 +4,16 @@ public class Book {
     private int id;
     private String title;
     private String description;
+    private Author author;
+
+
+    public Author getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(Author author) {
+        this.author = author;
+    }
 
     public Book(){}
     public Book( String title, String description){

@@ -16,6 +16,7 @@
 
         <property name = "title" column = "title" type = "string"/>
         <property name = "description" column = "description" type = "string"/>
+        <many-to-one name="author" column="authors_id"  class="com.bookstore.model.Author"/>
 
     </class>
 </hibernate-mapping>

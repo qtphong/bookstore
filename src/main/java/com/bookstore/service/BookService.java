@@ -1,6 +1,7 @@
 package com.bookstore.service;
 
 import com.bookstore.hb.Connection;
+import com.bookstore.model.Author;
 import com.bookstore.model.Book;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -39,6 +40,9 @@ public class BookService {
                 Book book = (Book) iterator.next();
                 System.out.println("Title: " + book.getTitle() );
                 System.out.println("Description: " + book.getDescription() );
+                Author author = book.getAuthor();
+
+                System.out.println("Author is: "+ author.getName());
             }
         }catch(HibernateException e){
             if(tx != null) tx.rollback();
@@ -60,7 +64,10 @@ public class BookService {
         }catch(HibernateException e){
             if(tx != null) tx.rollback();
             e.printStackTrace();
-        }finally {
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        finally {
             session.close();
         }
     }
