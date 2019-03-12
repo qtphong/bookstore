@@ -1,13 +1,12 @@
 package com.bookstore.model;
 
-import org.hibernate.annotations.SortComparator;
-
+import java.io.Serializable;
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
 @Table(name="authors")
-public class Author {
+public class Author implements Serializable {
 
     @Id
     @GeneratedValue
@@ -44,5 +43,14 @@ public class Author {
 
     public void setBooks(Set books) {
         this.books = books;
+    }
+
+    @Override
+    public String toString() {
+        return "Author{" +
+            "id=" + id +
+            ", name='" + name + '\'' +
+            ", books=" + books +
+            '}';
     }
 }

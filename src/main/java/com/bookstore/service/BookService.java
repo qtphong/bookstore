@@ -1,6 +1,6 @@
 package com.bookstore.service;
 
-import com.bookstore.hb.Connection;
+import com.bookstore.hb.HibernateUtils;
 import com.bookstore.model.Author;
 import com.bookstore.model.Book;
 import org.hibernate.HibernateException;
@@ -13,11 +13,11 @@ import java.util.List;
 
 public class BookService {
     public Integer addBook(String title, String description){
-        Session session = Connection.getSession();
+        Session session = HibernateUtils.getSession();
         Transaction tx = null;
         Integer bookId = null;
         try {
-            tx = Connection.getTransaction();
+            tx = HibernateUtils.getTransaction();
             Book book = new Book(title, description);
             bookId = (Integer) session.save(book);
             tx.commit();
@@ -31,10 +31,10 @@ public class BookService {
     }
 
     public void listBook(){
-        Session session = Connection.getSession();
+        Session session = HibernateUtils.getSession();
         Transaction tx = null;
         try{
-            tx = Connection.getTransaction() ;
+            tx = HibernateUtils.getTransaction() ;
             List books = session.createQuery("FROM Book").list();
             for(Iterator iterator = ((List) books).iterator(); iterator.hasNext();){
                 Book book = (Book) iterator.next();
@@ -53,10 +53,10 @@ public class BookService {
     }
 
     public void updateTitle(int id, String title){
-        Session session = Connection.getSession();
+        Session session = HibernateUtils.getSession();
         Transaction tx = null;
         try{
-            tx = Connection.getTransaction();
+            tx = HibernateUtils.getTransaction();
             Book book = session.get(Book.class,id);
             book.setTitle(title);
             session.update(book);
@@ -73,10 +73,10 @@ public class BookService {
     }
 
     public void deleteBook(int id){
-        Session session = Connection.getSession();
+        Session session = HibernateUtils.getSession();
         Transaction tx = null;
         try{
-            tx = Connection.getTransaction();
+            tx = HibernateUtils.getTransaction();
             Book book = (Book)session.get(Book.class,id);
             System.out.println(book.getTitle());
             session.delete(book);

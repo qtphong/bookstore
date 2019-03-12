@@ -1,12 +1,13 @@
 package com.bookstore.model;
 
+import java.io.Serializable;
 import org.hibernate.annotations.CollectionId;
 import com.bookstore.model.Author;
 import javax.persistence.*;
 
 @Entity
 @Table(name="books")
-public class Book {
+public class Book implements Serializable {
 
     @Id
     @GeneratedValue
@@ -64,5 +65,15 @@ public class Book {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+            "id=" + id +
+            ", title='" + title + '\'' +
+            ", description='" + description + '\'' +
+            ", author=" + author +
+            '}';
     }
 }

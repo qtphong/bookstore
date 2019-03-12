@@ -8,7 +8,7 @@ import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
 
-public class Connection {
+public class HibernateUtils {
 
     public static SessionFactory getFactory(){
         SessionFactory factory = null;
