@@ -1,9 +1,26 @@
 package com.bookstore.model;
 
+import org.hibernate.annotations.CollectionId;
+import com.bookstore.model.Author;
+import javax.persistence.*;
+
+@Entity
+@Table(name="books")
 public class Book {
+
+    @Id
+    @GeneratedValue
+    @Column(name="id")
     private int id;
+
+    @Column(name="title")
     private String title;
+
+    @Column(name="description")
     private String description;
+
+    @ManyToOne(cascade = {CascadeType.ALL})
+    @JoinColumn(name="authors_id")
     private Author author;
 
 
@@ -22,6 +39,7 @@ public class Book {
         this.description = description;
     }
 
+
     public int getId() {
         return id;
     }
@@ -30,6 +48,7 @@ public class Book {
         this.id = id;
     }
 
+
     public String getTitle() {
         return title;
     }
@@ -37,6 +56,7 @@ public class Book {
     public void setTitle(String title) {
         this.title = title;
     }
+
 
     public String getDescription() {
         return description;

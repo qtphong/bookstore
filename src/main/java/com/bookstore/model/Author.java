@@ -1,11 +1,24 @@
 package com.bookstore.model;
 
+import org.hibernate.annotations.SortComparator;
+
+import javax.persistence.*;
 import java.util.Set;
 
+@Entity
+@Table(name="authors")
 public class Author {
+
+    @Id
+    @GeneratedValue
+    @Column(name="id")
     private int id;
+    @Column(name="name")
     private String name;
-    private Set books;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name="authors_id")
+    private Set<Book> books;
 
     public Author(){}
 

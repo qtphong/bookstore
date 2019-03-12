@@ -27,8 +27,10 @@
         </property>
 
         <!-- List of XML mapping files -->
-        <mapping resource = "Book.hbm.xml"/>
-        <mapping resource = "Author.hbm.xml"/>
+        <!--<mapping resource = "Book.hbm.xml"/>-->
+        <!--<mapping resource = "Author.hbm.xml"/>-->
+        <mapping class="com.bookstore.model.Book"/>
+        <mapping class="com.bookstore.model.Author"/>
 
     </session-factory>
 </hibernate-configuration>
